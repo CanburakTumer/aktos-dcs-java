@@ -7,8 +7,9 @@
 package com.aktos_elektronik.broker;
 
 import java.util.Scanner;
+import com.aktos_elektronik.params.*;
 
-public class Broker {
+public class TestClass {
 
 	public static void main(String[] args) {
 		
@@ -22,9 +23,16 @@ public class Broker {
 		Thread pubsThread = new Thread(pubs, "Pubs Thread");
 		Thread subsThread = new Thread(subs, "Subs Thread");
 		
+		System.out.println("Input Hostname : ");
+		Params.setHost(input.nextLine());
+		System.out.println("Publisher Port : ");
+		Params.setPubPort(input.nextLine());
+		System.out.println("Subscriber Port : ");
+		Params.setSubPort(input.nextLine());
+		
 		pubsThread.start();
 		subsThread.start();
-		
+				
 		while(true){
 			System.out.println("Choose message to send and input selection number: \n"
 					+"1. Green Led ON\n" +

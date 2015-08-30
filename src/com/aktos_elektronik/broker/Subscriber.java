@@ -9,6 +9,8 @@ package com.aktos_elektronik.broker;
 
 import org.zeromq.ZMQ;
 
+import com.aktos_elektronik.params.Params;
+
 public class Subscriber implements Runnable{
 	
 	public void run() {
@@ -18,7 +20,7 @@ public class Subscriber implements Runnable{
 		subsSck.setRcvHWM(1);
 		subsSck.setLinger(0);
 		subsSck.subscribe("".getBytes());
-		subsSck.connect("tcp://localhost:5013");
+		subsSck.connect("tcp://"+Params.getHost()+":"+Params.getSubPort());
 		
 		while(true){
 			try {

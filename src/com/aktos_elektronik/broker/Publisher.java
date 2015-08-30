@@ -8,6 +8,7 @@ package com.aktos_elektronik.broker;
 
 import org.zeromq.ZMQ;
 import com.aktos_elektronik.json_ops.*;
+import com.aktos_elektronik.params.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -27,33 +28,9 @@ public class Publisher implements Runnable {
 		pubSck.setSndHWM(1);
 		senderID = UUID.randomUUID();
 		//mesID = 0;		
-		pubSck.connect("tcp://localhost:5012");
+		pubSck.connect("tcp://"+Params.getHost()+":"+Params.getPubPort());
 		date= new java.util.Date();
 		
-		/*
-		while(true){
-			
-			 
-			// message to change LED on.
-			String msgT = new JSONObject("{sender: [canburak], timestamp: "+ date.getTime() +", msg_id: canburak"+ mesID +", payload: {IoMessage: { val: true, pin_name: green-led } }}").toString() ;
-			mesID++;
-			// message to change LED off.
-			String msgF = new JSONObject("{sender: [canburak], timestamp: "+ date.getTime() +", msg_id: canburak"+ mesID +", payload: {IoMessage: { pin_name: green-led, val: false} }}").toString();
-			
-			pubSck.send(msgT);
-			System.out.println(msgT);
-			try {
-				// sleep a second for observing LED is on.
-				Thread.sleep(1000);
-				pubSck.send(msgF);
-				System.out.println(msgF);
-				// sleep a second for observing LED is off.
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			mesID++;
-		}		*/
 		
 	}
 	
