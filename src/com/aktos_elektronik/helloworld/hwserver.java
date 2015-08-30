@@ -1,3 +1,8 @@
+/*
+ * This Hello World sample has been taken from :
+ * https://dzone.com/articles/working-zeromq-java-and-jzmq
+ */
+
 package com.aktos_elektronik.helloworld;
 
 import java.io.PrintWriter;

@@ -1,6 +1,10 @@
-package com.aktos_elektronik.broker;
+/**
+ * @author: Canburak Tümer
+ * @version: 20150830.02
+ * @description : Main class for running publisher and subscriber threads.
+ */
 
-import org.zeromq.ZMQ;
+package com.aktos_elektronik.broker;
 
 public class Broker {
 
