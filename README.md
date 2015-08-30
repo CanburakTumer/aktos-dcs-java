@@ -10,6 +10,11 @@ Also you will need to download and compile jzmq from : http://github.com/zeromq/
 On linux machines you will find **zmq.jar** in : /usr/local/share/java
 And other shared libraries in : /usr/local/lib
 
+## Modifying code for own needs
+Just modify the broker to send required pin_name value pairs to Publisher.sendMessage(pin_name, value) function.
+
+Publisher builds message in aktos-dcs message format and send it to subscribers. Sample Broker is a CLI which is talking with aktos-website interface via aktos-dcs python process.
+
 
 ## Notes
 All classes of com.aktos_elektronik.json_ops package are taken from :
@@ -20,4 +25,5 @@ aktos-dcs and aktos-website can be found on : http://github.com/ceremcem
 "Hello World!" samples are taken from : https://dzone.com/articles/working-zeromq-java-and-jzmq
 
 ##TO-DO
-- Auto-generate messages. Remove hard-coded ones.
+- Auto-generate messages. Remove hard-coded ones. **OK**
+-- Now payload of message comes from Broker, senderID is Java UUID and messageID is JavaUUID+""+Math.Random()
