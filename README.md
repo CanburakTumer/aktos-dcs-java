@@ -25,5 +25,5 @@ aktos-dcs and aktos-website can be found on : http://github.com/ceremcem
 "Hello World!" samples are taken from : https://dzone.com/articles/working-zeromq-java-and-jzmq
 
 ##TO-DO
-- Auto-generate messages. Remove hard-coded ones. **OK**
--- Now payload of message comes from Broker, senderID is Java UUID and messageID is JavaUUID+""+Math.Random()
+* Auto-generate messages. Remove hard-coded ones. **OK**
+	* Now payload of message comes from Broker, senderID is Java UUID and messageID is JavaUUID+""+Math.Random()
