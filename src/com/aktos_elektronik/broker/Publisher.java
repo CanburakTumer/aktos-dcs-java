@@ -9,24 +9,30 @@ package com.aktos_elektronik.broker;
 import org.zeromq.ZMQ;
 import com.aktos_elektronik.json_ops.*;
 
+import java.util.Date;
+import java.util.UUID;
+
 
 public class Publisher implements Runnable {
-
+	ZMQ.Context pubCnt;
+	ZMQ.Socket pubSck ;	
+	UUID senderID;
+	//int mesID;
+	Date date;
 	
 	public void run() {
-		ZMQ.Context pubCnt = ZMQ.context(1);
-		ZMQ.Socket pubSck = pubCnt.socket(ZMQ.PUB);
+		pubCnt = ZMQ.context(1);
+		pubSck = pubCnt.socket(ZMQ.PUB);
 		pubSck.setLinger(0);
 		pubSck.setSndHWM(1);
-		
+		senderID = UUID.randomUUID();
+		//mesID = 0;		
 		pubSck.connect("tcp://localhost:5012");
+		date= new java.util.Date();
 		
-		// mesID -> Message ID to differentiate each message from the previous one.
-		// Messages with same IDs will be discarded by aktos-dcs.
-		int mesID = 0;
-		
+		/*
 		while(true){
-			java.util.Date date= new java.util.Date();
+			
 			 
 			// message to change LED on.
 			String msgT = new JSONObject("{sender: [canburak], timestamp: "+ date.getTime() +", msg_id: canburak"+ mesID +", payload: {IoMessage: { val: true, pin_name: green-led } }}").toString() ;
@@ -47,11 +53,25 @@ public class Publisher implements Runnable {
 				e.printStackTrace();
 			}
 			mesID++;
-		}
-		
-		
+		}		*/
 		
 	}
-
-
+	
+	public void sendMessage(String pin_name, String value){
+		String message = "{sender: [";
+		message += senderID;
+		message += "], timestamp: ";
+		message += date.getTime();
+		message += ", msg_id: ";
+		message += senderID+""+(Math.random()*1000);
+		message += ", payload: {IoMessage: {pin_name: ";
+		message += pin_name;
+		message += ", val: ";
+		message += value;
+		message += "}}}";
+		
+		pubSck.send(new JSONObject(message).toString());
+		
+	}
+	
 }
