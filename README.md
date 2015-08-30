@@ -11,9 +11,9 @@ On linux machines you will find **zmq.jar** in : /usr/local/share/java
 And other shared libraries in : /usr/local/lib
 
 ## Modifying code for own needs
-Just modify the broker to send required pin_name value pairs to Publisher.sendMessage(pin_name, value) function.
+Just modify the TestClass to send required pin_name value pairs to Publisher.sendMessage(pin_name, value) function.
 
-Publisher builds message in aktos-dcs message format and send it to subscribers. Sample Broker is a CLI which is talking with aktos-website interface via aktos-dcs python process.
+Publisher builds message in aktos-dcs message format and send it to subscribers. Sample TestClass is a CLI which is talking with aktos-website interface via aktos-dcs python process.
 
 
 ## Notes
